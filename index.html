@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="/srv/hover.css">
+
+    <title>Chinmay Singh</title>
+    <meta content="" name="Links, SAP Labs, Developer, Software, Web">    
+</head>
+
+<body class="sm:grid grid-cols-2 min-h-screen touch-pan-y 
+              snap-y snap-mandatory
+              font-semibold
+              bg-cs-black">
+
+    <div class="flex min-h-screen
+                snap-start snap-mandatory">
+        <div class="m-auto grid min-w-full place-content-center
+                animate-in duration-1000 slide-in-from-left-5 fade-in-5">
+                <p class="text-white text-xl">
+                    You may say <br>I'm a <span id="typed" class="text-cs-blue"></span><br> But I'm not the only one
+                </p>
+                <p class="mt-3"><a id="get-in-touch" href="mailto:chinsingh@outlook.in" class="text-lg hover:text-cs-blue text-cs-light-gray">
+                    <span>Get in touch</span>
+                </a>                 
+                </p>
+        </div>
+
+    </div>
+
+<!-- Links -->
+<div class="main flex flex-col h-screen place-content-center snap-start snap-mandatory">
+  <div class="overflow-auto m-5">
+    <a href="http://chinsingh.hashnode.dev" target="_new">
+    <div class="flex  select-none p-5 rounded-xl bg-[#262626] max-w-lg  mb-3
+    hover:bg-gradient-to-br from-green-400 to-blue-600  focus:ring-4 focus:outline-none focus:ring-green-800
+    animate-in duration-1000 slide-in-from-bottom-5 fade-in">
+      <div class="left">
+        <div class="header font-semibold text-cs-white text-xl">Blog</div>
+        <div class="desc font-bold text-lg text-cs-white opacity-50">Sharing my dev-to-dev insights.</div>
+      </div>
+    </div>
+  </a>
+  <a href="http://chinsingh.github.io/notes" target="_new">
+    <div class="flex  select-none p-5 rounded-xl bg-[#1c1c1c] max-w-lg mb-3
+    hover:bg-gradient-to-r from-cyan-500 to-blue-500 focus:ring-4 focus:outline-none focus:ring-cyan-800    
+    animate-in duration-1000 slide-in-from-bottom-5 fade-in">
+      <div class="left">
+        <div class="header font-semibold text-cs-white text-xl">Notes</div>
+        <div class="desc font-bold text-lg text-cs-white opacity-50">A copy of my notes.</div>
+      </div>
+    </div>
+  </a>
+  <a href="https://resume-ylef.onrender.com/" target="_new">
+    <div class="flex select-none p-5 rounded-xl bg-[#111111] max-w-lg mb-3  
+    hover:bg-gradient-to-tl from-purple-600 to-blue-500  focus:ring-4 focus:outline-none focus:ring-blue-800
+    animate-in duration-1000 slide-in-from-bottom-5 fade-in">
+      <div class="left">
+        <div class="header font-semibold text-cs-white text-xl">Résumé</div>
+        <div class="desc font-bold text-lg text-cs-white opacity-50">Hire me, pls</div>
+      </div>
+    </div>
+  </a>
+</div>
+</div>    
+</body>
+
+<!-- Load library from the CDN -->
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+<!-- Setup and start animation! -->
+<script>
+    var typed = new Typed('#typed', {
+        strings: ['developer', 'designer', 'dreamer'],
+        typeSpeed: 200,
+        smartBackspace:true,
+        showCursor: false,
+        cursorChar: '_',
+    });
+</script>
+
+<style>
+
+#get-in-touch:hover span{
+  display: none
+}
+
+#get-in-touch:hover:before {
+  content: "chinsingh@outlook.in"
+}
+</style>
+</html>
