@@ -653,24 +653,38 @@ video {
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
-.from-green-400 {
-  --tw-gradient-from: #4ade80 var(--tw-gradient-from-position);
-  --tw-gradient-to: rgb(74 222 128 / 0) var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
-}
-
 .from-purple-600 {
   --tw-gradient-from: #9333ea var(--tw-gradient-from-position);
   --tw-gradient-to: rgb(147 51 234 / 0) var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
 }
 
+.from-70\% {
+  --tw-gradient-from-position: 70%;
+}
+
+.from-50\% {
+  --tw-gradient-from-position: 50%;
+}
+
+.from-20\% {
+  --tw-gradient-from-position: 20%;
+}
+
+.to-\[\#FF0000\] {
+  --tw-gradient-to: #FF0000 var(--tw-gradient-to-position);
+}
+
 .to-blue-500 {
   --tw-gradient-to: #3b82f6 var(--tw-gradient-to-position);
 }
 
-.to-blue-600 {
-  --tw-gradient-to: #2563eb var(--tw-gradient-to-position);
+.to-red-500 {
+  --tw-gradient-to: #ef4444 var(--tw-gradient-to-position);
+}
+
+.to-50\% {
+  --tw-gradient-to-position: 50%;
 }
 
 .p-5 {
@@ -747,30 +761,12 @@ video {
   --tw-enter-translate-y: initial;
 }
 
-.animate-out {
-  animation-name: exit;
-  animation-duration: 150ms;
-  --tw-exit-opacity: initial;
-  --tw-exit-scale: initial;
-  --tw-exit-rotate: initial;
-  --tw-exit-translate-x: initial;
-  --tw-exit-translate-y: initial;
-}
-
 .fade-in {
   --tw-enter-opacity: 0;
 }
 
 .fade-in-5 {
   --tw-enter-opacity: 0.05;
-}
-
-.fade-out {
-  --tw-exit-opacity: 0;
-}
-
-.fade-out-10 {
-  --tw-exit-opacity: 0.1;
 }
 
 .slide-in-from-bottom-5 {
@@ -797,19 +793,13 @@ video {
   background-image: linear-gradient(to top left, var(--tw-gradient-stops));
 }
 
+.hover\:bg-gradient-to-l:hover {
+  background-image: linear-gradient(to left, var(--tw-gradient-stops));
+}
+
 .hover\:text-cs-blue:hover {
   --tw-text-opacity: 1;
   color: rgb(70 166 255 / var(--tw-text-opacity));
-}
-
-.hover\:animate-out:hover {
-  animation-name: exit;
-  animation-duration: 150ms;
-  --tw-exit-opacity: initial;
-  --tw-exit-scale: initial;
-  --tw-exit-rotate: initial;
-  --tw-exit-translate-x: initial;
-  --tw-exit-translate-y: initial;
 }
 
 .focus\:outline-none:focus {
