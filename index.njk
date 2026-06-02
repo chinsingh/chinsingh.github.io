@@ -1,0 +1,28 @@
+---
+layout: base.njk
+---
+{% set introContent %}{% include "intro.md" %}{% endset %}
+{% if introContent | trim %}
+<div class="intro">{{ introContent | trim | markdown | safe }}</div>
+<hr class="hr-subtle" />
+{% endif %}
+<div class="field-filters">
+  <span class="field-filter field-software" data-field="software">Software</span>
+  <span class="field-filter field-science" data-field="science">Science</span>
+  <span class="field-filter field-art" data-field="art">Art</span>
+</div>
+{% for cat in collections.categories %}
+<div class="section-group" data-section="{{ cat | lower | replace(' ', '-') }}">
+  <h2>{{ cat }}</h2>
+  <ul>
+    {% for post in collections.posts %}
+      {% if cat in (post.data.section | asArray) %}
+      <li data-fields="{{ post.data.field | asArray | join(' ') | lower }}">
+        <a href="{{ post.url }}">{{ post.data.title }}</a>
+        <span class="post-meta">{{ post.data.display_date }}{% for f in (post.data.field | asArray) %} · <span class="field-{{ f | lower }}">{{ f }}</span>{% endfor %}</span>
+      </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>
+{% endfor %}

@@ -1,0 +1,14 @@
+---
+layout: base.njk
+---
+<article>
+  <h1>{{ title }}</h1>
+  <small>
+    {{ display_date }}
+    {% for sec in (section | asArray) %}
+      · <span class="sec-{{ sec | lower | replace(' ', '-') }}">{{ sec }}</span>
+    {% endfor %}
+  </small>
+  <hr />
+  {{ content | safe }}
+</article>

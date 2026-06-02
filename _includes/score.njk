@@ -1,0 +1,55 @@
+---
+layout: base.njk
+---
+<article>
+  <h1>{{ title }}</h1>
+  <small>
+    {{ display_date }}
+    {% for sec in (section | asArray) %}
+      · <span class="sec-{{ sec | lower | replace(' ', '-') }}">{{ sec }}</span>
+    {% endfor %}
+  </small>
+  <hr />
+
+  {% if content %}
+  <div>{{ content | safe }}</div>
+  {% endif %}
+
+  {% if soundcloud_url %}
+  <iframe
+    width="100%"
+    height="20"
+    scrolling="no"
+    frameborder="no"
+    allow="autoplay"
+    src="https://w.soundcloud.com/player/?url={{ soundcloud_url }}&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
+  </iframe>
+  {% elif audio_file %}
+  <audio controls preload="none" style="width:100%">
+    <source src="{{ audio_file }}" type="audio/wav">
+  </audio>
+  {% endif %}
+
+  {% if score_file %}
+  <div class="score-breakout">
+    <div id="osmd-container"></div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/opensheetmusicdisplay@1.8.6/build/opensheetmusicdisplay.min.js"></script>
+  <script>
+    const container = document.getElementById("osmd-container");
+    container.style.width = "99999px";
+    const osmd = new opensheetmusicdisplay.OpenSheetMusicDisplay(container, {
+      autoResize: false,
+      drawTitle: false,
+      pageFormat: "endless",
+      pageBackgroundColor: "transparent",
+    });
+    osmd.load("{{ score_file }}").then(() => {
+      osmd.render();
+      const svg = container.querySelector("svg");
+      const svgWidth = svg ? parseFloat(svg.getAttribute("width")) : null;
+      container.style.width = svgWidth ? svgWidth + "px" : "100%";
+    });
+  </script>
+  {% endif %}
+</article>

@@ -1,0 +1,19 @@
+module.exports = {
+  title: "@chinsingh",
+  url: "https://chinsingh.github.io",
+  author: "Chinmay Singh",
+  navGroups: [
+    [
+      { label: "home", url: "/" },
+      { label: "projects", url: "/projects/" },
+    ],
+    [
+      { label: "linkedin", url: "https://linkedin.com/in/chinsingh" },
+      { label: "email", url: "mailto:chinsingh@outlook.in" },
+    ],
+    [
+      { label: "about", url: "/about/" },
+      { label: "rss", url: "/feed.xml" },
+    ],
+  ],
+};

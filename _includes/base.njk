@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" />
+    <link rel="stylesheet" href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" />
+    <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="{{ site.title }}" />
+  </head>
+  <body>
+    <header>
+      <a href="/" class="site-title">{{ site.author }}</a>
+      <nav>
+        {% for group in site.navGroups %}
+        <div class="nav-group">
+          {% for link in group %}
+          <a href="{{ link.url }}">{{ link.label }}</a>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </nav>
+    </header>
+    <hr class="hr-subtle" />
+    <main>
+      {{ content | safe }}
+    </main>
+    <hr class="hr-subtle" />
+    <footer>
+      <small>&copy; {{ site.author }}</small>
+    </footer>
+    {% if page.url == "/" %}
+    <script src="/js/filter.js"></script>
+    {% endif %}
+  </body>
+</html>
