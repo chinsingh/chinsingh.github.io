@@ -10,5 +10,5 @@ layout: base.njk
     {% endfor %}
   </small>
   <hr />
-  {{ content | safe }}
+  {% include "types/" + (type or "text") + ".njk" %}
 </article>

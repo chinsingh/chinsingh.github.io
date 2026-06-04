@@ -1,21 +1,32 @@
 const rssPlugin = require("@11ty/eleventy-plugin-rss");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
+const { renderD2 } = require("./_build/d2");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(rssPlugin);
   eleventyConfig.addPlugin(syntaxHighlight);
 
+  eleventyConfig.amendLibrary("md", (mdLib) => {
+    const defaultFence = mdLib.renderer.rules.fence;
+    mdLib.renderer.rules.fence = (tokens, idx, options, env, self) => {
+      const token = tokens[idx];
+      if (token.info.trim() === "d2") {
+        const svg = renderD2(token.content);
+        return `<figure class="diagram">${svg}</figure>`;
+      }
+      return defaultFence(tokens, idx, options, env, self);
+    };
+  });
+
   eleventyConfig.addPassthroughCopy("css");
   eleventyConfig.addPassthroughCopy("assets");
   eleventyConfig.addPassthroughCopy("js");
+  eleventyConfig.addPassthroughCopy("CNAME");
   eleventyConfig.addWatchTarget("js/");
-  eleventyConfig.addPassthroughCopy("posts/**/*.{jpg,jpeg,png,gif,webp,svg}");
-  eleventyConfig.addPassthroughCopy("scores/**/*.musicxml");
-  eleventyConfig.addPassthroughCopy("scores/**/*.wav");
+  eleventyConfig.addPassthroughCopy("posts/**/*.{jpg,jpeg,png,gif,webp,svg,musicxml,wav,mp3,m4a}");
 
-  // Collection: all posts and scores sorted newest first
   eleventyConfig.addCollection("posts", (api) =>
-    api.getFilteredByGlob(["posts/**/index.md", "scores/**/index.md"]).sort((a, b) => b.date - a.date)
+    api.getFilteredByGlob("posts/**/index.md").sort((a, b) => b.date - a.date)
   );
 
   // Render markdown string to HTML
@@ -29,7 +40,7 @@ module.exports = function (eleventyConfig) {
 
   // Collection: categories sorted by their most recent post
   eleventyConfig.addCollection("categories", (api) => {
-    const posts = api.getFilteredByGlob(["posts/**/index.md", "scores/**/index.md"]);
+    const posts = api.getFilteredByGlob("posts/**/index.md");
     const latestDate = {};
     for (const post of posts) {
       const cats = post.data.section;

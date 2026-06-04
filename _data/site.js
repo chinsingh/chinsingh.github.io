@@ -1,6 +1,6 @@
 module.exports = {
   title: "@chinsingh",
-  url: "https://chinsingh.github.io",
+  url: "https://chns.in",
   author: "Chinmay Singh",
   navGroups: [
     [

@@ -25,6 +25,27 @@ body {
   margin: 8px auto;
   display: flex;
   flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+article {
+  font-family: "Palatino", "Palatino Linotype", "URW Palladio L", "Book Antiqua", Georgia, serif;
+}
+
+a {
+  font-family: "Palatino", "Palatino Linotype", "URW Palladio L", "Book Antiqua", Georgia, serif;
+  font-size: 0.9em;
+}
+
+article h1,
+article h2,
+article h3,
+article h4,
+article h5,
+article h6,
+article small,
+.post-meta {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 main {
@@ -89,7 +110,6 @@ main h1, main h2, main h3, main h4 {
 
 article {
   text-align: justify;
-  font-size: 1.1em;
 }
 
 article h1 {
@@ -130,7 +150,7 @@ main .section-group > ul > li a {
 }
 
 .post-meta {
-  font-size: 0.85em;
+  font-size: 0.75em;
   color: gray;
   flex-shrink: 0;
 }

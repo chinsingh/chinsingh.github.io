@@ -1,0 +1,15 @@
+formulas:
+  Untitled: ""
+views:
+  - type: table
+    name: Table
+    filters:
+      and:
+        - draft == true
+    order:
+      - title
+      - file.name
+      - display_date
+    sort:
+      - property: date
+        direction: DESC
