@@ -1,6 +1,7 @@
 const rssPlugin = require("@11ty/eleventy-plugin-rss");
 const syntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const { renderD2 } = require("./_build/d2");
+const { youtubeId } = require("./_build/youtube");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(rssPlugin);
@@ -29,6 +30,10 @@ module.exports = function (eleventyConfig) {
     api.getFilteredByGlob("posts/**/index.md").sort((a, b) => b.date - a.date)
   );
 
+  eleventyConfig.addCollection("cards", (api) =>
+    api.getFilteredByGlob("stream/cards/*.md").sort((a, b) => b.date - a.date)
+  );
+
   // Render markdown string to HTML
   const md = require("markdown-it")();
   eleventyConfig.addFilter("markdown", (content) => md.render(content));
@@ -37,6 +42,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("asArray", (val) =>
     !val ? [] : Array.isArray(val) ? val : [val]
   );
+
+  eleventyConfig.addFilter("youtubeId", youtubeId);
 
   // Collection: categories sorted by their most recent post
   eleventyConfig.addCollection("categories", (api) => {

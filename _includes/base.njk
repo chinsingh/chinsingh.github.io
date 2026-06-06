@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% if title %}{{ title }} — {{ site.title }}{% else %}{{ site.title }}{% endif %}</title>
     <link rel="stylesheet" href="/css/style.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&display=swap" />
     <link rel="stylesheet" href="https://unpkg.com/prism-themes@1.9.0/themes/prism-night-owl.css" />
     <link rel="alternate" type="application/atom+xml" href="/feed.xml" title="{{ site.title }}" />
   </head>
@@ -32,6 +32,9 @@
     </footer>
     {% if page.url == "/" %}
     <script src="/js/filter.js"></script>
+    {% endif %}
+    {% if page.url and (page.url.startsWith("/posts/") or page.url.startsWith("/stream/")) %}
+    <script src="/js/copy.js"></script>
     {% endif %}
   </body>
 </html>

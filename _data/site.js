@@ -6,6 +6,7 @@ module.exports = {
     [
       { label: "home", url: "/" },
       { label: "projects", url: "/projects/" },
+      { label: "stream", url: "/stream/" },
     ],
     [
       { label: "linkedin", url: "https://linkedin.com/in/chinsingh" },

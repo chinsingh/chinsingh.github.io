@@ -1,0 +1,19 @@
+{% set vid = card.url | youtubeId %}
+{% if vid %}
+<a class="song-card" href="{{ card.url }}" target="_blank" rel="noopener"
+   data-play-type="youtube" data-play-src="{{ vid }}">
+  <div class="song-thumb">
+    <img src="https://img.youtube.com/vi/{{ vid }}/hqdefault.jpg" alt="" loading="lazy" />
+    <span class="song-thumb-icon">
+      <svg viewBox="0 0 48 48" width="28" height="28"><path d="M16 12l22 12-22 12z" fill="none" stroke="#fff" stroke-width="2.5" stroke-linejoin="round"/></svg>
+    </span>
+  </div>
+  <div class="song-meta">
+    {% if card.title %}<span class="song-title">{{ card.title }}</span>{% endif %}
+    {% if card.artist %}<span class="song-artist">{{ card.artist }}</span>{% endif %}
+    {% if body %}<div class="song-caption">{{ body | safe }}</div>{% endif %}
+  </div>
+</a>
+{% else %}
+{% if body %}<div class="card-body prose">{{ body | safe }}</div>{% endif %}
+{% endif %}

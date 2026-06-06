@@ -1,0 +1,21 @@
+---
+layout: base.njk
+permalink: /stream/
+---
+<div class="stream">
+  {% for entry in collections.cards %}
+    {% set card = entry.data %}
+    {% set body = entry.templateContent %}
+    <article class="card card-{{ card.card }}">
+      {% if card.card == "song" %}
+        {% include "cards/song.njk" %}
+      {% else %}
+        {% include "cards/base.njk" %}
+      {% endif %}
+      <div class="card-meta">
+        {% if card.card == "til" %}<span class="card-til-label">today I learnt</span>{% endif %}
+        <time>{{ card.date.toISOString().slice(0, 10) }}</time>
+      </div>
+    </article>
+  {% endfor %}
+</div>

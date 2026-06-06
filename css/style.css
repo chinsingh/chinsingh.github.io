@@ -1,3 +1,38 @@
+:root {
+  --bg-page: #ffffff;
+  --text-page: #1a1a1a;
+  --text-prose: #1a1a1a;   /* article prose: black (cards override below) */
+  --text-muted: gray;
+  --text-accent: #8b7355;
+  --bg-surface: transparent;
+  --bg-card: #f5ede0;
+  --bg-score: #fdf6e3;
+  --link: inherit;
+}
+
+/* Card surface deviates: brown text on parchment */
+.card {
+  --text-prose: #4a3a2a;
+  --bg-surface: var(--bg-card);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode tokens — fill in deliberately when designing dark theme */
+    --bg-page: #1a1a1a;
+    --text-page: #e0e0e0;
+    --text-prose: #e0e0e0;
+    --text-muted: #999;
+    --text-accent: #b89976;
+    --bg-card: #2a2520;
+    --link: #7eb8f7;
+  }
+
+  .card {
+    --text-prose: #e8dfc8;
+  }
+}
+
 @font-face {
   font-family: "Apple Chancery";
   src: url("/assets/fonts/Apple Chancery.ttf") format("truetype");
@@ -23,17 +58,31 @@ body {
   min-height: calc(100vh - 16px);
   max-width: 640px;
   margin: 8px auto;
+  padding: 0 16px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg-page);
+  color: var(--text-page);
 }
 
-article {
-  font-family: "Palatino", "Palatino Linotype", "URW Palladio L", "Book Antiqua", Georgia, serif;
+.prose {
+  font-family: "Fraunces", Georgia, serif;
+  text-align: justify;
+  line-height: 1.55;
+}
+
+.prose > *:not(pre):not(figure) {
+  color: var(--text-prose);
+}
+
+.prose p {
+  margin: 0.25em 0;
 }
 
 a {
-  font-family: "Palatino", "Palatino Linotype", "URW Palladio L", "Book Antiqua", Georgia, serif;
+  font-family: "Fraunces", Georgia, serif;
   font-size: 0.9em;
 }
 
@@ -108,10 +157,6 @@ main h1, main h2, main h3, main h4 {
 }
 
 
-article {
-  text-align: justify;
-}
-
 article h1 {
   margin-bottom: 0.15em;
 }
@@ -121,7 +166,7 @@ article h1 {
   margin-left: calc(50% - 50vw);
   overflow-x: auto;
   padding: 1em 0;
-  background: #fdf6e3;
+  background: var(--bg-score);
 }
 
 main > ul,
@@ -151,7 +196,7 @@ main .section-group > ul > li a {
 
 .post-meta {
   font-size: 0.75em;
-  color: gray;
+  color: var(--text-muted);
   flex-shrink: 0;
 }
 
@@ -183,10 +228,27 @@ article img {
 }
 
 blockquote {
-  border-left: 3px solid currentColor;
-  margin: 0;
-  padding: 0.25em 1em;
-  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  margin: 0.75em 0;
+  padding: 0.6em 1em;
+}
+
+.card-quote .prose {
+  font-family: "Apple Chancery", "Zapf Chancery", cursive;
+  text-align: center;
+  font-size: 1.2em;
+  font-weight: 600;
+  max-width: 32ch;
+  margin: 0.3em auto;
+}
+
+.card-quote .prose p:last-child {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: normal;
+  font-size: 0.7em;
+  color: var(--text-muted);
+  margin-top: 0.8em;
 }
 
 code, pre, code[class*="language-"], pre[class*="language-"] {
@@ -194,14 +256,191 @@ code, pre, code[class*="language-"], pre[class*="language-"] {
   font-family: "Courier Prime", Courier, monospace !important;
 }
 
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background: #1a1a1a;
-    color: #e0e0e0;
-  }
-
-  a {
-    color: #7eb8f7;
-  }
+pre[class*="language-"] {
+  position: relative;
 }
+
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  color: var(--text-muted);
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+
+.copy-btn:hover {
+  color: var(--text-prose);
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.copy-btn.copied {
+  color: #5a8a5a;
+}
+
+/* Copy button on dark code blocks needs light colors */
+pre[class*="language-"] .copy-btn {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+pre[class*="language-"] .copy-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+
+.stream {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: 12px;
+  padding: 14px 25px;
+  position: relative;
+}
+
+.card-meta {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.7em;
+  color: var(--text-muted);
+  margin-top: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.card-meta:not(:has(.card-til-label)) {
+  justify-content: flex-end;
+}
+
+/* Song card: date sits on the same bottom line as the song row, not below it */
+.card-song {
+  display: flex;
+  align-items: flex-end;
+  gap: 1em;
+}
+
+.card-song .song-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-song .card-meta {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+.card-til-label {
+  font-size: 1.1em;
+  color: var(--text-accent);
+  letter-spacing: 0.03em;
+  text-transform: lowercase;
+}
+
+.card-title {
+  margin: 0 0 0.25em 0;
+  font-size: 1em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.card-body {
+  margin: 0;
+}
+
+.card-song {
+  padding: 10px 16px;
+}
+
+.song-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  font-size: 1rem;
+}
+
+.song-thumb {
+  position: relative;
+  flex-shrink: 0;
+  width: 64px;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.song-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.song-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(74, 58, 42, 0.4);
+}
+
+.song-thumb-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  opacity: 0.95;
+  display: flex;
+  transition: opacity 0.15s, transform 0.15s;
+}
+
+.song-card:hover .song-thumb-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.song-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  text-align: left;
+}
+
+.song-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: var(--text-prose);
+  font-size: 1.05em;
+  font-weight: 600;
+}
+
+.song-artist {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.85em;
+  color: var(--text-muted);
+}
+
+.song-caption {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 0.95em;
+  color: var(--text-prose);
+  text-align: left;
+  margin-top: 0.3em;
+}
+
+.song-caption p {
+  margin: 0;
+}
+
