@@ -5,7 +5,6 @@ module.exports = {
   navGroups: [
     [
       { label: "home", url: "/" },
-      { label: "projects", url: "/projects/" },
       { label: "stream", url: "/stream/" },
     ],
     [

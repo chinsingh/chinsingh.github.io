@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light dark;
   --bg-page: #ffffff;
   --text-page: #1a1a1a;
   --text-prose: #1a1a1a;   /* article prose: black (cards override below) */
@@ -7,7 +8,6 @@
   --bg-surface: transparent;
   --bg-card: #f5ede0;
   --bg-score: #fdf6e3;
-  --link: inherit;
 }
 
 /* Card surface deviates: brown text on parchment */
@@ -25,12 +25,21 @@
     --text-muted: #999;
     --text-accent: #b89976;
     --bg-card: #2a2520;
-    --link: #7eb8f7;
   }
 
   .card {
     --text-prose: #e8dfc8;
   }
+}
+
+/* Laila for Devanagari, forced to a heavier weight via the 600 file.
+   Declared at weight 400 so it applies regardless of the element's font-weight. */
+@font-face {
+  font-family: "LailaDeva";
+  src: url(https://fonts.gstatic.com/s/laila/v20/LYjBdG_8nE8jDLyFpANA.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  unicode-range: U+0900-097F, U+A8E0-A8FF, U+1CD0-1CFF;
 }
 
 @font-face {
@@ -68,7 +77,7 @@ body {
 }
 
 .prose {
-  font-family: "Fraunces", Georgia, serif;
+  font-family: "Fraunces", "LailaDeva", Georgia, serif;
   text-align: justify;
   line-height: 1.55;
 }
@@ -78,7 +87,7 @@ body {
 }
 
 .prose p {
-  margin: 0.25em 0;
+  margin: 1.2em 0;
 }
 
 a {
@@ -153,6 +162,10 @@ main, footer {
 }
 
 main h1, main h2, main h3, main h4 {
+  text-align: left;
+}
+
+article {
   text-align: left;
 }
 

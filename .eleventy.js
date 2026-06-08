@@ -8,6 +8,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(syntaxHighlight);
 
   eleventyConfig.amendLibrary("md", (mdLib) => {
+    mdLib.set({ breaks: true });
     const defaultFence = mdLib.renderer.rules.fence;
     mdLib.renderer.rules.fence = (tokens, idx, options, env, self) => {
       const token = tokens[idx];
@@ -35,7 +36,7 @@ module.exports = function (eleventyConfig) {
   );
 
   // Render markdown string to HTML
-  const md = require("markdown-it")();
+  const md = require("markdown-it")({ breaks: true });
   eleventyConfig.addFilter("markdown", (content) => md.render(content));
 
   // Normalize section field to always be an array
